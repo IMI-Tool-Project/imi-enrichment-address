@@ -1,0 +1,168 @@
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>imi-enrichment-address</title>
+  <style>
+    pre {
+      background: black;
+      color: white;
+      padding: 0.5em;
+      white-space: pre-wrap;
+      margin: 0;
+    }
+
+    body>div {
+      max-width: 800px;
+      margin: 0.5em auto;
+    }
+
+    textarea {
+      width: 100%;
+      display: block;
+    }
+
+    dt {
+      font-weight: bold;
+      margin-top: 0.25em;
+    }
+
+    code {
+      background: #ccc;
+      padding: 0.2em
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <h1>imi-enrichment-address</h1>
+
+    <p>このページは imi-enrichment-address の WebAPI の動作確認ページです。</p>
+
+    <h1>動作確認</h1>
+    <p><b>変換</b> ボタンを押すとこのブラウザから実際に WebAPI を実行して結果を表示します</p>
+    <dl>
+      <dt>日付文字列</dt>
+      <dd><input value="東京都千代田区霞が関1-3-1" id="text" style="width:30em;"/> <button id="textButton">変換</button></dd>
+      <dt>JSON</dt>
+      <dd><textarea rows="10" id="json">{"@type":"場所型","住所":{"@type":"住所型","表記":"東京都千代田区霞が関1-3-1"}}</textarea> <button id="jsonButton">変換</button></dd>
+      <dt>実行結果</dt>
+      <dd>
+        <textarea rows="22" id="result">ここに実行結果が表示されます</textarea>
+      </dd>
+    </dl>
+
+    <h1>使用方法</h1>
+
+    <p>現在表示されている URL に <code>POST</code> メソッドを使って住所文字列 または JSON を送信すると変換結果の JSON が出力されます。</p>
+
+    <h2>curl</h2>
+    <p>住所文字列を変換する場合には <code>Content-Type: text/plain</code> を指定して <code>POST</code> します</p>
+    <pre>
+$ curl -X POST -H 'Content-Type: text/plain' -d '東京都千代田区霞が関1-3-1' __ENDPOINT__
+{
+  "@type": "場所型",
+  "住所": {
+    "@type": "住所型",
+    "表記": "東京都千代田区霞が関1-3-1",
+    "都道府県": "東京都",
+    "都道府県コード": "http://data.e-stat.go.jp/lod/sac/C13000",
+    "市区町村": "千代田区",
+    "市区町村コード": "http://data.e-stat.go.jp/lod/sac/C13101",
+    "町名": "霞が関",
+    "丁目": "1",
+    "番地": "3",
+    "号": "1"
+  },
+  "地理座標": {
+    "@type": "座標型",
+    "緯度": "35.673944",
+    "経度": "139.752558"
+  }
+}
+</pre>
+
+    <p>JSON を変換する場合には <code>Content-Type: application/json</code> を指定して <code>POST</code> します</p>
+    <pre>
+$ curl -X POST -H 'Content-Type: application/json' -d '{"@type":"住所型","表記":"東京都千代田区霞が関1-3-1"}' __ENDPOINT__
+{
+  "@type": "住所型",
+  "表記": "東京都千代田区霞が関1-3-1",
+  "都道府県": "東京都",
+  "都道府県コード": "http://data.e-stat.go.jp/lod/sac/C13000",
+  "市区町村": "千代田区",
+  "市区町村コード": "http://data.e-stat.go.jp/lod/sac/C13101",
+  "町名": "霞が関",
+  "丁目": "1",
+  "番地": "3",
+  "号": "1"
+}
+</pre>
+
+    <h2>browser</h2>
+    <p>住所文字列を変換する場合には <code>Content-Type: text/plain</code> を指定して <code>POST</code> します</p>
+    <pre>
+fetch("__ENDPOINT__", {
+  method: "POST",
+  headers: {
+    "Content-Type": "text/plain"
+  },
+  body: "東京都千代田区霞が関1-3-1"
+}).then(function(response) {
+  return response.ok ? response.json() : response.text();
+}).then(function(result) {
+  console.log(result);
+});
+</pre>
+
+    <p>JSON を変換する場合には <code>Content-Type: application/json</code> を指定して <code>POST</code> します</p>
+
+    <pre>
+fetch("__ENDPOINT__", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: '{"@type":"場所型","住所":{"@type":"住所型","表記":"東京都千代田区霞が関1-3-1"}}'
+}).then(function(response) {
+  return response.ok ? response.json() : response.text();
+}).then(function(result) {
+  console.log(result);
+});
+</pre>
+  </div>
+  <script>
+    function $(id) {
+      return document.getElementById(id);
+    }
+
+    function send(contentType, body) {
+      fetch(location.href, {
+        method: "POST",
+        headers: {
+          "Content-Type": contentType
+        },
+        body: body
+      }).then(function(response) {
+        return response.ok ? response.json() : response.text();
+      }).then(function(obj) {
+        $("result").textContent = typeof obj === 'string' ? obj : JSON.stringify(obj, null, 2);
+      });
+    }
+
+    Array.from(document.getElementsByTagName("pre")).forEach(function(e) {
+      e.textContent = e.textContent.replace("__ENDPOINT__", location.href);
+    });
+
+    $("textButton").addEventListener("click", function() {
+      send("text/plain; charset=utf-8", $("text").value);
+    });
+
+    $("jsonButton").addEventListener("click", function() {
+      send("application/json", $("json").value);
+    });
+  </script>
+</body>
+
+</html>

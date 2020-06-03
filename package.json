@@ -1,0 +1,35 @@
+{
+  "name": "imi-enrichment-address",
+  "version": "2.0.0",
+  "description": "IMI 住所型正規化パッケージ",
+  "main": "main.js",
+  "scripts": {
+    "test": "mocha",
+    "download": "bash tools/download.sh",
+    "format": "zcat cache/isj.txt.gz | node tools/format.js cache/sac_label.json cache/sac_parent.json cache/sac_change.json",
+    "tree": "zcat cache/isj.txt.gz  | node tools/tree.js cache/sac_label.json cache/sac_parent.json cache/sac_change.json > lib/tree.json",
+    "start": "node bin/server.js 8080"
+  },
+  "bin": "bin/cli.js",
+  "files": [
+    "bin",
+    "lib",
+    "db"
+  ],
+  "keywords": [
+    "imi"
+  ],
+  "author": "IMI Tool Project",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.2.2",
+    "node-fetch": "^2.6.0"
+  },
+  "dependencies": {
+    "command-line-args": "^5.1.1",
+    "command-line-usage": "^6.1.0",
+    "leveldown": "^5.4.1",
+    "levelup": "^4.3.2"
+  }
+}

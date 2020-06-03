@@ -1,0 +1,118 @@
+[{
+  "name": "海外の住所",
+  "input": "アメリカ合衆国",
+  "output": {
+    "@context": "https://imi.go.jp/ns/core/context.jsonld",
+    "@type": "場所型",
+    "メタデータ": {
+      "@type": "文書型",
+      "説明": "該当する地名が見つかりません"
+    },
+    "住所": {
+      "@type": "住所型",
+      "表記": "アメリカ合衆国"
+    }
+  }
+}, {
+  "name": "都道府県名の間違い",
+  "input": "東京県世田谷区三軒茶屋二丁目",
+  "output": {
+    "@context": "https://imi.go.jp/ns/core/context.jsonld",
+    "@type": "場所型",
+    "メタデータ": {
+      "@type": "文書型",
+      "説明": "該当する地名が見つかりません"
+    },
+    "住所": {
+      "@type": "住所型",
+      "表記": "東京県世田谷区三軒茶屋二丁目"
+    }
+  }
+}, {
+  "name": "市区町村名の間違い",
+  "input": "東京都世田屋区三軒茶屋二丁目",
+  "output": {
+    "@context": "https://imi.go.jp/ns/core/context.jsonld",
+    "@type": "場所型",
+    "メタデータ": {
+      "@type": "文書型",
+      "説明": "該当する市区町村名が見つかりません"
+    },
+    "住所": {
+      "@type": "住所型",
+      "表記": "東京都世田屋区三軒茶屋二丁目",
+      "都道府県": "東京都",
+      "都道府県コード": "http://data.e-stat.go.jp/lod/sac/C13000"
+    }
+  }
+}, {
+  "name": "町名の間違い",
+  "input": "東京都世田谷区六軒茶屋二丁目",
+  "output": {
+    "@context": "https://imi.go.jp/ns/core/context.jsonld",
+    "@type": "場所型",
+    "メタデータ": {
+      "@type": "文書型",
+      "説明": "該当する町名が見つかりません"
+    },
+    "住所": {
+      "@type": "住所型",
+      "表記": "東京都世田谷区六軒茶屋二丁目",
+      "市区町村": "世田谷区",
+      "市区町村コード": "http://data.e-stat.go.jp/lod/sac/C13112",
+      "都道府県": "東京都",
+      "都道府県コード": "http://data.e-stat.go.jp/lod/sac/C13000"
+    }
+  }
+}, {
+  "name": "丁目の間違い",
+  "input": "東京都世田谷区三軒茶屋四丁目",
+  "output": {
+    "@context": "https://imi.go.jp/ns/core/context.jsonld",
+    "@type": "場所型",
+    "メタデータ": {
+      "@type": "文書型",
+      "説明": "該当する丁目が見つかりません"
+    },
+    "住所": {
+      "@type": "住所型",
+      "表記": "東京都世田谷区三軒茶屋四丁目",
+      "市区町村": "世田谷区",
+      "市区町村コード": "http://data.e-stat.go.jp/lod/sac/C13112",
+      "都道府県": "東京都",
+      "都道府県コード": "http://data.e-stat.go.jp/lod/sac/C13000",
+      "町名": "三軒茶屋"
+    }
+  }
+}, {
+  "name": "あるべき丁目が指定されていない",
+  "input": "東京都世田谷区三軒茶屋",
+  "output": {
+    "@context": "https://imi.go.jp/ns/core/context.jsonld",
+    "@type": "場所型",
+    "住所": {
+      "@type": "住所型",
+      "表記": "東京都世田谷区三軒茶屋",
+      "市区町村": "世田谷区",
+      "市区町村コード": "http://data.e-stat.go.jp/lod/sac/C13112",
+      "都道府県": "東京都",
+      "都道府県コード": "http://data.e-stat.go.jp/lod/sac/C13000",
+      "町名": "三軒茶屋"
+    }
+  }
+}, {
+  "name": "あいまいな市区町村名",
+  "input": "府中市",
+  "output": {
+    "@context": "https://imi.go.jp/ns/core/context.jsonld",
+    "@type": "場所型",
+    "メタデータ": {
+      "@type": "文書型",
+      "説明": "該当する地名が複数あります"
+    },
+    "住所": {
+      "@type": "住所型",
+      "表記": "府中市"
+    }
+  }
+}]
