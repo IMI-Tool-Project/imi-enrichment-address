@@ -1,5 +1,5 @@
-const expect = require('chai').expect;
-const spawn = require('child_process').spawn;
+const expect = require("chai").expect;
+const spawn = require("child_process").spawn;
 const fs = require("fs");
 const spec = __dirname + "/../spec";
 
@@ -8,15 +8,15 @@ function cli(options, stdin) {
   const cmd = ["bin/cli.js"].concat(options || []);
   return new Promise(resolve => {
     const child = spawn("node", cmd);
-    child.stdout.setEncoding('utf-8');
-    child.stdout.on('data', (data) => {
+    child.stdout.setEncoding("utf-8");
+    child.stdout.on("data", (data) => {
       res += data;
     });
-    child.on('close', (code) => {
+    child.on("close", (code) => {
       resolve(res);
     });
     if (stdin) {
-      child.stdin.setEncoding('utf-8');
+      child.stdin.setEncoding("utf-8");
       child.stdin.write(stdin);
       child.stdin.end();
     }
@@ -25,7 +25,7 @@ function cli(options, stdin) {
 
 const samples = JSON.parse(fs.readFileSync(`${spec}/001-io.json`, "UTF-8"));
 
-describe('imi-enrichment-addressn#cli', () => {
+describe("imi-enrichment-addressn#cli", () => {
 
   const tempfile = `tmp.${(new Date()).getTime()}.json`;
 
@@ -38,7 +38,7 @@ describe('imi-enrichment-addressn#cli', () => {
     fs.unlinkSync(tempfile);
   });
 
-  describe('options', () => {
+  describe("options", () => {
 
     it("-h", (done) => {
       cli(["-h"]).then(res => {
@@ -135,7 +135,7 @@ describe('imi-enrichment-addressn#cli', () => {
         const json = JSON.parse(fs.readFileSync(`${spec}/${file}`, "UTF-8"));
         json.forEach(a => {
           it(a.name, done => {
-            const promise = typeof a.input === 'string' ? cli(["-s", a.input]) : cli(null, JSON.stringify(a.input));
+            const promise = typeof a.input === "string" ? cli(["-s", a.input]) : cli(null, JSON.stringify(a.input));
             promise.then(res => {
               try {
                 expect(JSON.parse(res)).deep.equal(a.output);

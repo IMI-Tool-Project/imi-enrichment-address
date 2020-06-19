@@ -16,7 +16,7 @@ const server = http.createServer((req, res) => {
       "Content-Type": "text/html; charset=utf-8",
       "Access-Control-Allow-Origin": "*"
     });
-    res.end(require('fs').readFileSync(__dirname + "/server.html", "utf-8"));
+    res.end(require("fs").readFileSync(__dirname + "/server.html", "utf-8"));
     return;
   }
   if (req.method !== "POST") {

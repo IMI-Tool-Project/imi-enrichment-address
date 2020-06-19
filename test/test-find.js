@@ -1,5 +1,5 @@
 const find = require("../lib/find");
-const expect = require('chai').expect;
+const expect = require("chai").expect;
 
 const data = {
   "三軒茶屋二丁目": {
@@ -118,7 +118,7 @@ const data = {
   }
 };
 
-describe('imi-enrichment-address#find', function() {
+describe("imi-enrichment-address#find", function() {
   Object.keys(data).forEach(label => {
     const code = data[label];
     it(label, () => {

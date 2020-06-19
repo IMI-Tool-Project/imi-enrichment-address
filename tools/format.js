@@ -1,8 +1,8 @@
-const readline = require('readline');
-const fs = require('fs');
+const readline = require("readline");
+const fs = require("fs");
 
-const levelup = require('levelup');
-const leveldown = require('leveldown');
+const levelup = require("levelup");
+const leveldown = require("leveldown");
 const db = levelup(leveldown(__dirname + "/../db"));
 const promises = [];
 
@@ -196,10 +196,10 @@ const latests = {};
 
 readline.createInterface({
   input: process.stdin
-}).on('line', (line) => {
+}).on("line", (line) => {
   const col = line.trim().replace(/"/g, "").split(",");
   if (col.length !== 10) return;
-  if (col[0] === '都道府県コード') return;
+  if (col[0] === "都道府県コード") return;
 
   const pref_code = col[0];
   const city_code = col[2];
@@ -242,7 +242,7 @@ readline.createInterface({
 
   promises.push(db.put(name_code, JSON.stringify(json)));
 
-}).on('close', () => {
+}).on("close", () => {
 
   Promise.all(promises).then(() => {
     console.error("done");

@@ -1,6 +1,6 @@
-const readline = require('readline');
-const fs = require('fs');
-const simplify = require('../lib/util').simplify;
+const readline = require("readline");
+const fs = require("fs");
+const simplify = require("../lib/util").simplify;
 
 const chome = [
   "〇", "一", "二", "三", "四", "五", "六", "七", "八", "九",
@@ -73,7 +73,7 @@ Object.values(map).forEach(e => {
 
 readline.createInterface({
   input: process.stdin
-}).on('line', (line) => {
+}).on("line", (line) => {
   const col = simplify(line).trim().replace(/"/g, "").split(",");
   if (col.length !== 10) return;
   const pref_code = col[0];
@@ -118,7 +118,7 @@ readline.createInterface({
     x.max = Math.max(x.max, parseInt(lower));
   });
 
-}).on('close', () => {
+}).on("close", () => {
 
   const root = {};
 
@@ -146,7 +146,7 @@ readline.createInterface({
       } else if (next.length > 0) {
         container[src.key] = next[0];
       } else {
-        container[src.key] = {}
+        container[src.key] = {};
       }
     }
     src.children.forEach(child => {

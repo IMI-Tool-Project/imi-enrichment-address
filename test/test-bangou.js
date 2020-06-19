@@ -1,5 +1,5 @@
 const bangou = require("../lib/bangou");
-const expect = require('chai').expect;
+const expect = require("chai").expect;
 
 const data = {
   "": {},
@@ -14,8 +14,8 @@ const data = {
   }
 };
 
-describe('imi-enrichment-address#bangou', function() {
-  describe('番地・号なし', function() {
+describe("imi-enrichment-address#bangou", function() {
+  describe("番地・号なし", function() {
     it("空白", () => {
       expect(bangou("")).deep.equal({});
     });
@@ -23,7 +23,7 @@ describe('imi-enrichment-address#bangou', function() {
       expect(bangou("ビル名")).deep.equal({});
     });
   });
-  describe('番地のみ', function() {
+  describe("番地のみ", function() {
     it("半角", () => {
       expect(bangou("12345")).deep.equal({
         "番地": "12345"
@@ -58,7 +58,7 @@ describe('imi-enrichment-address#bangou', function() {
       });
     });
   });
-  describe('番地号', function() {
+  describe("番地号", function() {
     it("半角", () => {
       expect(bangou("103-45")).deep.equal({
         "番地": "103",

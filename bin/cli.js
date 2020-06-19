@@ -1,34 +1,34 @@
 #!/usr/bin/env node
 
-const fs = require('fs');
-const commandLineArgs = require('command-line-args');
-const commandLineUsage = require('command-line-usage');
+const fs = require("fs");
+const commandLineArgs = require("command-line-args");
+const commandLineUsage = require("command-line-usage");
 const enrichment = require("../main");
 
 const optionDefinitions = [{
-  name: 'help',
-  alias: 'h',
+  name: "help",
+  alias: "h",
   type: Boolean,
-  description: 'このヘルプを表示します'
+  description: "このヘルプを表示します"
 }, {
-  name: 'file',
-  alias: 'f',
+  name: "file",
+  alias: "f",
   type: String,
   defaultOption: true,
-  typeLabel: '{underline file}',
-  description: '変換対象とする JSON ファイル'
+  typeLabel: "{underline file}",
+  description: "変換対象とする JSON ファイル"
 }, {
-  name: 'string',
-  alias: 's',
+  name: "string",
+  alias: "s",
   type: String,
-  typeLabel: '{underline string}',
-  description: '変換対象とする住所文字列',
+  typeLabel: "{underline string}",
+  description: "変換対象とする住所文字列",
 }, {
-  name: 'indent',
-  alias: 'i',
+  name: "indent",
+  alias: "i",
   type: Number,
-  typeLabel: '{underline number}',
-  description: '出力する JSON のインデント (default 2)',
+  typeLabel: "{underline number}",
+  description: "出力する JSON のインデント (default 2)",
   defaultValue: 2
 }];
 
@@ -36,32 +36,32 @@ const options = commandLineArgs(optionDefinitions);
 
 if (options.help) {
   const usage = commandLineUsage([{
-    header: 'imi-enrichment-address',
-    content: '住所文字列をもとに住所型・場所型の情報を補完します'
+    header: "imi-enrichment-address",
+    content: "住所文字列をもとに住所型・場所型の情報を補完します"
   }, {
-    header: 'オプション',
+    header: "オプション",
     optionList: optionDefinitions
   }, {
-    header: '実行例',
+    header: "実行例",
     content: [{
-        desc: 'ヘルプの表示',
-        example: '$ imi-enrichment-address -h'
-      },
-      {
-        desc: '文字列の処理',
-        example: '$ imi-enrichment-address -s 霞が関2'
-      },
-      {
-        desc: 'ファイルの処理',
-        example: '$ imi-enrichment-address input.json'
-      },
-      {
-        desc: '標準入力の処理',
-        example: '$ cat input.json | imi-enrichment-address'
-      }
+      desc: "ヘルプの表示",
+      example: "$ imi-enrichment-address -h"
+    },
+    {
+      desc: "文字列の処理",
+      example: "$ imi-enrichment-address -s 霞が関2"
+    },
+    {
+      desc: "ファイルの処理",
+      example: "$ imi-enrichment-address input.json"
+    },
+    {
+      desc: "標準入力の処理",
+      example: "$ cat input.json | imi-enrichment-address"
+    }
     ]
   }]);
-  console.log(usage)
+  console.log(usage);
 } else if (options.string) {
   enrichment(options.string).then(json => {
     console.log(JSON.stringify(json, null, options.indent));
@@ -73,10 +73,10 @@ if (options.help) {
   });
 } else {
   let buffer = "";
-  process.stdin.setEncoding('utf-8');
-  process.stdin.on('data', chunk => {
+  process.stdin.setEncoding("utf-8");
+  process.stdin.on("data", chunk => {
     buffer += chunk;
-  }).on('end', () => {
+  }).on("end", () => {
     const input = JSON.parse(buffer);
     enrichment(input).then(json => {
       console.log(JSON.stringify(json, null, options.indent));

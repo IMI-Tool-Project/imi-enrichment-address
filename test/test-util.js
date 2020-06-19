@@ -1,18 +1,18 @@
 const util = require("../lib/util");
-const expect = require('chai').expect;
+const expect = require("chai").expect;
 
-describe('util', function() {
-  it('#z2h', () => {
+describe("util", function() {
+  it("#z2h", () => {
     expect(util.z2h("０１２３４５６７８９０１２３４５６７８９")).to.equal("01234567890123456789");
   });
-  it('#h2z', () => {
+  it("#h2z", () => {
     expect(util.h2z("01234567890123456789")).to.equal("０１２３４５６７８９０１２３４５６７８９");
   });
-  it('#k2h', () => {
+  it("#k2h", () => {
     expect(util.k2h("〇一二三四五六七八九〇一二三四五六七八九")).to.equal("01234567890123456789");
   });
 
-  it('#j2h', () => {
+  it("#j2h", () => {
     expect(util.j2h("零")).to.equal("0");
     expect(util.j2h("一")).to.equal("1");
     expect(util.j2h("二")).to.equal("2");
@@ -107,7 +107,7 @@ describe('util', function() {
     expect(util.j2h("一千五百")).to.equal("1500");
   });
 
-  it('#h2j', () => {
+  it("#h2j", () => {
     expect(util.h2j("0")).to.equal("零");
     expect(util.h2j("1")).to.equal("一");
     expect(util.h2j("2")).to.equal("二");

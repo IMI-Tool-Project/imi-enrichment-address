@@ -1,8 +1,8 @@
-const expect = require('chai').expect;
-const levelup = require('levelup');
-const leveldown = require('leveldown');
+const expect = require("chai").expect;
+const levelup = require("levelup");
+const leveldown = require("leveldown");
 
-describe('imi-enrichment-address#format', function() {
+describe("imi-enrichment-address#format", function() {
 
   let db;
 
@@ -57,43 +57,43 @@ describe('imi-enrichment-address#format', function() {
         expect(JSON.parse(str)).deep.equal({
           "@context": "https://imi.go.jp/ns/core/context.jsonld",
           "@graph": [{
-              "@type": "住所型",
-              "メタデータ": {
-                "@type": "文書型",
-                "日付": [{
-                    "@type": "日付型",
-                    "標準型日付": "1999-04-01",
-                    "種別": "施行"
-                  },
-                  {
-                    "@type": "日付型",
-                    "標準型日付": "2019-05-01",
-                    "種別": "廃止"
-                  }
-                ]
+            "@type": "住所型",
+            "メタデータ": {
+              "@type": "文書型",
+              "日付": [{
+                "@type": "日付型",
+                "標準型日付": "1999-04-01",
+                "種別": "施行"
               },
-              "市区町村": "篠山市",
-              "市区町村コード": "http://data.e-stat.go.jp/lod/sac/C28221",
-              "表記": "兵庫県篠山市",
-              "都道府県": "兵庫県",
-              "都道府県コード": "http://data.e-stat.go.jp/lod/sac/C28000"
+              {
+                "@type": "日付型",
+                "標準型日付": "2019-05-01",
+                "種別": "廃止"
+              }
+              ]
             },
-            {
-              "@type": "住所型",
-              "メタデータ": {
-                "@type": "文書型",
-                "日付": {
-                  "@type": "日付型",
-                  "標準型日付": "2019-05-01",
-                  "種別": "施行"
-                },
+            "市区町村": "篠山市",
+            "市区町村コード": "http://data.e-stat.go.jp/lod/sac/C28221",
+            "表記": "兵庫県篠山市",
+            "都道府県": "兵庫県",
+            "都道府県コード": "http://data.e-stat.go.jp/lod/sac/C28000"
+          },
+          {
+            "@type": "住所型",
+            "メタデータ": {
+              "@type": "文書型",
+              "日付": {
+                "@type": "日付型",
+                "標準型日付": "2019-05-01",
+                "種別": "施行"
               },
-              "市区町村": "丹波篠山市",
-              "市区町村コード": "http://data.e-stat.go.jp/lod/sac/C28221",
-              "表記": "兵庫県丹波篠山市",
-              "都道府県": "兵庫県",
-              "都道府県コード": "http://data.e-stat.go.jp/lod/sac/C28000"
-            }
+            },
+            "市区町村": "丹波篠山市",
+            "市区町村コード": "http://data.e-stat.go.jp/lod/sac/C28221",
+            "表記": "兵庫県丹波篠山市",
+            "都道府県": "兵庫県",
+            "都道府県コード": "http://data.e-stat.go.jp/lod/sac/C28000"
+          }
           ]
         });
         done();
@@ -118,15 +118,15 @@ describe('imi-enrichment-address#format', function() {
             "メタデータ": {
               "@type": "文書型",
               "日付": [{
-                  "@type": "日付型",
-                  "種別": "施行",
-                  "標準型日付": "1970-04-01"
-                },
-                {
-                  "@type": "日付型",
-                  "種別": "廃止",
-                  "標準型日付": "2001-05-01"
-                }
+                "@type": "日付型",
+                "種別": "施行",
+                "標準型日付": "1970-04-01"
+              },
+              {
+                "@type": "日付型",
+                "種別": "廃止",
+                "標準型日付": "2001-05-01"
+              }
               ],
               "参照": {
                 "@type": "参照型",
@@ -163,15 +163,15 @@ describe('imi-enrichment-address#format', function() {
             "メタデータ": {
               "@type": "文書型",
               "日付": [{
-                  "@type": "日付型",
-                  "種別": "施行",
-                  "標準型日付": "1970-04-01"
-                },
-                {
-                  "@type": "日付型",
-                  "種別": "廃止",
-                  "標準型日付": "2006-03-01"
-                }
+                "@type": "日付型",
+                "種別": "施行",
+                "標準型日付": "1970-04-01"
+              },
+              {
+                "@type": "日付型",
+                "種別": "廃止",
+                "標準型日付": "2006-03-01"
+              }
               ],
               "参照": {
                 "@type": "参照型",
@@ -213,15 +213,15 @@ describe('imi-enrichment-address#format', function() {
             "メタデータ": {
               "@type": "文書型",
               "日付": [{
-                  "@type": "日付型",
-                  "種別": "施行",
-                  "標準型日付": "1970-04-01"
-                },
-                {
-                  "@type": "日付型",
-                  "種別": "廃止",
-                  "標準型日付": "2001-01-21"
-                }
+                "@type": "日付型",
+                "種別": "施行",
+                "標準型日付": "1970-04-01"
+              },
+              {
+                "@type": "日付型",
+                "種別": "廃止",
+                "標準型日付": "2001-01-21"
+              }
               ],
               "参照": {
                 "@type": "参照型",
