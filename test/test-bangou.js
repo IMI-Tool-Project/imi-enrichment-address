@@ -1,8 +1,8 @@
 const bangou = require("../lib/bangou");
 const expect = require("chai").expect;
 
-describe("imi-enrichment-address#bangou", function () {
-  describe("番地、号を含まない文字列を変換するとき", function () {
+describe("imi-enrichment-address#bangou", () => {
+  describe("番地、号を含まない文字列を変換するとき", () => {
     describe("空白の文字列を変換するとき", () => {
       it("空のオブジェクトを返す", () => {
         expect(bangou("")).deep.equal({});
@@ -16,7 +16,7 @@ describe("imi-enrichment-address#bangou", function () {
     });
   });
 
-  describe("番地のみを含む文字列を変換するとき", function () {
+  describe("番地のみを含む文字列を変換するとき", () => {
     describe("番地が半角数字で表されているとき", () => {
       it("番地を property にもち，値が半角数字の文字列であるオブジェクトを返す", () => {
         expect(bangou("12345")).deep.equal({
@@ -60,7 +60,7 @@ describe("imi-enrichment-address#bangou", function () {
     });
   });
 
-  describe("番地、号を含む文字列を変換するとき", function () {
+  describe("番地、号を含む文字列を変換するとき", () => {
     describe("番地、号が半角数字で表されているとき", () => {
       it("番地、号を property にもち，それぞれの値が半角数字の文字列であるオブジェクトを返す", () => {
         expect(bangou("103-45")).deep.equal({
