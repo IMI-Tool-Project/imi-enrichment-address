@@ -25,12 +25,14 @@ describe("util", function () {
       expect(util.j2h("零")).to.equal("0");
       expect(util.j2h("一")).to.equal("1");
       expect(util.j2h("二")).to.equal("2");
+
       expect(util.j2h("十")).to.equal("10");
       expect(util.j2h("十一")).to.equal("11");
       expect(util.j2h("十二")).to.equal("12");
       expect(util.j2h("二十")).to.equal("20");
       expect(util.j2h("二十一")).to.equal("21");
       expect(util.j2h("二十二")).to.equal("22");
+
       expect(util.j2h("百")).to.equal("100");
       expect(util.j2h("百一")).to.equal("101");
       expect(util.j2h("百二")).to.equal("102");
@@ -40,6 +42,7 @@ describe("util", function () {
       expect(util.j2h("百二十")).to.equal("120");
       expect(util.j2h("百二十一")).to.equal("121");
       expect(util.j2h("百二十二")).to.equal("122");
+
       expect(util.j2h("二百")).to.equal("200");
       expect(util.j2h("二百一")).to.equal("201");
       expect(util.j2h("二百二")).to.equal("202");
@@ -49,6 +52,7 @@ describe("util", function () {
       expect(util.j2h("二百二十")).to.equal("220");
       expect(util.j2h("二百二十一")).to.equal("221");
       expect(util.j2h("二百二十二")).to.equal("222");
+
       expect(util.j2h("千")).to.equal("1000");
       expect(util.j2h("千一")).to.equal("1001");
       expect(util.j2h("千二")).to.equal("1002");
@@ -105,13 +109,12 @@ describe("util", function () {
       expect(util.j2h("二千二百二十一")).to.equal("2221");
       expect(util.j2h("二千二百二十二")).to.equal("2222");
 
-
       expect(util.j2h("一万千百十一")).to.equal("11111");
       expect(util.j2h("二万二千二百二十二")).to.equal("22222");
+
       expect(util.j2h("一億千百十一万千百十一")).to.equal("111111111");
       expect(util.j2h("二億二千二百二十二万二千二百二十二")).to.equal("222222222");
 
-      //
       expect(util.j2h("千五百")).to.equal("1500");
       expect(util.j2h("一千五百")).to.equal("1500");
     });
@@ -122,12 +125,14 @@ describe("util", function () {
       expect(util.h2j("0")).to.equal("零");
       expect(util.h2j("1")).to.equal("一");
       expect(util.h2j("2")).to.equal("二");
+
       expect(util.h2j("10")).to.equal("十");
       expect(util.h2j("11")).to.equal("十一");
       expect(util.h2j("12")).to.equal("十二");
       expect(util.h2j("20")).to.equal("二十");
       expect(util.h2j("21")).to.equal("二十一");
       expect(util.h2j("22")).to.equal("二十二");
+
       expect(util.h2j("100")).to.equal("百");
       expect(util.h2j("101")).to.equal("百一");
       expect(util.h2j("102")).to.equal("百二");
@@ -137,6 +142,7 @@ describe("util", function () {
       expect(util.h2j("120")).to.equal("百二十");
       expect(util.h2j("121")).to.equal("百二十一");
       expect(util.h2j("122")).to.equal("百二十二");
+
       expect(util.h2j("200")).to.equal("二百");
       expect(util.h2j("201")).to.equal("二百一");
       expect(util.h2j("202")).to.equal("二百二");
@@ -146,6 +152,7 @@ describe("util", function () {
       expect(util.h2j("220")).to.equal("二百二十");
       expect(util.h2j("221")).to.equal("二百二十一");
       expect(util.h2j("222")).to.equal("二百二十二");
+
       expect(util.h2j("1000")).to.equal("千");
       expect(util.h2j("1001")).to.equal("千一");
       expect(util.h2j("1002")).to.equal("千二");
@@ -202,12 +209,11 @@ describe("util", function () {
       expect(util.h2j("2221")).to.equal("二千二百二十一");
       expect(util.h2j("2222")).to.equal("二千二百二十二");
 
-
       expect(util.h2j("11111")).to.equal("一万千百十一");
       expect(util.h2j("22222")).to.equal("二万二千二百二十二");
+
       expect(util.h2j("111111111")).to.equal("一億千百十一万千百十一");
       expect(util.h2j("222222222")).to.equal("二億二千二百二十二万二千二百二十二");
-
     });
   });
 
@@ -309,6 +315,4 @@ describe("util", function () {
       });
     });
   });
-
-
 });
