@@ -1,19 +1,6 @@
 const bangou = require("../lib/bangou");
 const expect = require("chai").expect;
 
-const data = {
-  "": {},
-  "ビル名": {},
-  "1-2": {
-    "番地": "1",
-    "号": "2"
-  },
-  "1-2": {
-    "番地": "1",
-    "号": "2"
-  }
-};
-
 describe("imi-enrichment-address#bangou", function () {
   describe("番地、号を含まない文字列を変換するとき", function () {
     describe("空白の文字列を変換するとき", () => {
