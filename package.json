@@ -23,8 +23,8 @@
   "license": "MIT",
   "devDependencies": {
     "chai": "^4.2.0",
-    "mocha": "^6.2.3",
-    "node-fetch": "^2.6.0"
+    "mocha": "^8.2.1",
+    "node-fetch": "^2.6.1"
   },
   "dependencies": {
     "command-line-args": "^5.1.1",
