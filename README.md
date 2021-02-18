@@ -113,14 +113,20 @@
 
 # 利用者向け情報
 
-以下の手順はパッケージアーカイブ `imi-enrichment-address-2.0.0.tgz` を用いて実行します。
+`imi-enrichment-address` は node.js のモジュールですが、
+動作のためには後述の環境構築の手順によってバンドルデータベースを構築する必要があります。
+
+簡便な動作確認のために、バンドルデータベースを同梱したパッケージアーカイブが
+[gBizInfo: IMI コンポーネントツール](https://info.gbiz.go.jp/tools/imi_tools/index.html) のページにて公開されています。
+
+以下の手順は同ページで公開されているパッケージアーカイブ `imi-enrichment-address-2.0.0.tgz` を用いて実行します。
 
 ## インストール
 
 以下の手順でインストールします。
 
 ```
-$ npm install imi-enrichment-address-2.0.0.tgz
+$ npm install https://info.gbiz.go.jp/tools/imi_tools/resource/imi-enrichment-address/imi-enrichment-address-2.0.0.tgz
 ```
 
 ## コマンドラインインターフェイス
@@ -131,7 +137,7 @@ $ npm install imi-enrichment-address-2.0.0.tgz
 コマンドラインインターフェイスのファイルの実体は `bin/cli.js` です。
 
 ```
-$ npm install imi-enrichment-address-2.0.0.tgz
+$ npm install https://info.gbiz.go.jp/tools/imi_tools/resource/imi-enrichment-address/imi-enrichment-address-2.0.0.tgz
 
 # ヘルプの表示
 $ imi-enrichment-address -h
@@ -150,7 +156,7 @@ $ imi-enrichment-address -s 霞が関2 > output.json
 または `npx` を使って以下のようにインストールせずに実行することも可能です。
 
 ```
-$ npx imi-enrichment-address-2.0.0.tgz -s 霞が関2
+$ npx https://info.gbiz.go.jp/tools/imi_tools/resource/imi-enrichment-address/imi-enrichment-address-2.0.0.tgz -s 霞が関2
 ```
 
 ## Web API
@@ -163,7 +169,7 @@ $ npx imi-enrichment-address-2.0.0.tgz -s 霞が関2
 以下のように `bin/server.js` を実行することで起動できます。
 
 ```
-$ npm install imi-enrichment-address-2.0.0.tgz
+$ npm install https://info.gbiz.go.jp/tools/imi_tools/resource/imi-enrichment-address/imi-enrichment-address-2.0.0.tgz
 $ node node_modules/imi-enrichment-address/bin/server.js
 Usage: node server.js [port number]
 
@@ -232,8 +238,6 @@ convert("霞が関2").then(json=>{
 
 # 開発者向け情報
 
-以下の手順はソースコードアーカイブ `imi-enrichment-address-2.0.0.src.tgz` を用いて実行します。
-
 ## 準備
 
 本パッケージでは [総務省統計局 e-Stat 統計LOD:地域に関するデータ:統計に用いる標準地域コード](http://data.e-stat.go.jp/lodw/provdata/lodRegion#3-2-1) のデータおよび [国土交通省 国土政策局 国土情報課:位置参照情報ダウンロードサービス:大字・町丁目レベル位置参照情報](http://nlftp.mlit.go.jp/isj/index.html) のデータをダウンロードして使用します。
@@ -245,9 +249,8 @@ convert("霞が関2").then(json=>{
 以下の手順で環境を構築します。
 
 ```
-$ mkdir imi-enrichment-address
+$ git clone https://github.com/IMI-Tool-Project/imi-enrichment-address.git
 $ cd imi-enrichment-address
-$ tar xvzf /tmp/imi-enrichment-address-2.0.0.src.tgz
 $ npm install
 $ npm run download
 $ npm run tree
