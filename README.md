@@ -242,7 +242,7 @@ convert("霞が関2").then(json=>{
 
 本パッケージでは [総務省統計局 e-Stat 統計LOD:地域に関するデータ:統計に用いる標準地域コード](http://data.e-stat.go.jp/lodw/provdata/lodRegion#3-2-1) のデータおよび [国土交通省 国土政策局 国土情報課:位置参照情報ダウンロードサービス:大字・町丁目レベル位置参照情報](http://nlftp.mlit.go.jp/isj/index.html) のデータをダウンロードして使用します。
 
-これらのダウンロードは環境構築手順の `npm run setup` の中で自動的に実行されます。
+これらのダウンロードは環境構築手順の `bash tools/download.sh` の中で自動的に実行されます。
 
 ## 環境構築
 
@@ -252,7 +252,7 @@ convert("霞が関2").then(json=>{
 $ git clone https://github.com/IMI-Tool-Project/imi-enrichment-address.git
 $ cd imi-enrichment-address
 $ npm install
-$ npm run download
+$ bash tools/download.sh 12.0b
 $ npm run tree
 $ npm run format
 ```
@@ -265,6 +265,57 @@ $ npm run format
 $ cd imi-enrichment-address
 $ npm test
 ```
+
+## パッケージアーカイブの作成
+
+以下の手順で、バンドルデータを含むパッケージアーカイブを作成できます。
+
+```
+$ cd imi-enrichment-address
+$ npm pack
+imi-enrichment-address-2.0.0.tgz
+$
+```
+
+## データソースの変更(参考情報)
+
+上記の環境構築手順では位置参照情報 (平成30年度版) がダウンロードされ、環境が構築されます。
+また、テストも位置参照情報 (平成30年度版) に含まれるデータを前提としたテストになっています。
+
+一方で、位置参照情報は以下のような URL 構造を持っており、`${バージョン}` に適切な文字列を設定することで、
+異なる年度のデータをダウンロードして環境を構築することが可能です。
+
+```
+https://nlftp.mlit.go.jp/isj/dls/data/${バージョン}/${地方公共団体コード}-${バージョン}.zip
+```
+
+バージョン文字列は、たとえば平成30年度版であれば `12.0b` , 令和元年度版であれば `13.0b` といったものです。
+
+ダウンロード処理の実体は `tools/download.sh` に記述されており、
+このシェルスクリプトは以下のように、位置参照情報のバージョン文字列を引数にとります。
+
+```
+$ bash tools/download.sh
+usage: bash tools/download.sh [位置参照情報のバージョン (例:12.0b)]
+$
+```
+
+仮に令和元年度版データをもとに環境を構築する場合は、以下のように `12.0b` を `13.0b` に書き換えることで対応できます。
+
+```
+$ git clone https://github.com/IMI-Tool-Project/imi-enrichment-address.git
+$ cd imi-enrichment-address
+$ npm install
+$ bash tools/download.sh 13.0b
+$ npm run tree
+$ npm run format
+```
+
+なお、位置参照情報の URL 仕様変更・ファイル仕様変更・CSV レイアウトの変更・特定年度のデータエラーなどにより、
+必ずしも動作を保証するものではありません。
+
+また、テストコードは位置参照情報 (平成30年度版) を前提としたもので、
+当該年度以外のデータで構築された環境でのテストについてはサポートされていないことに注意してください。
 
 
 ## ブラウザビルド(参考情報)
