@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+if [ $# -ne 1 ]; then
+  echo "usage: bash tools/download.sh [位置参照情報のバージョン (例:12.0b)]" 1>&2
+  exit 1
+fi
+
 SCRIPT_DIR=$(cd $(dirname $0); pwd)
 CACHE_DIR=${SCRIPT_DIR}/../cache
 OUTPUT=${CACHE_DIR}/isj.txt.gz
@@ -8,11 +13,13 @@ SAC_LABEL=${CACHE_DIR}/sac_label.json
 SAC_PARENT=${CACHE_DIR}/sac_parent.json
 SAC_CHANGE=${CACHE_DIR}/sac_change.json
 
+ISJ_VERSION="$1"
+
 mkdir -p ${CACHE_DIR}
 rm -f ${OUTPUT}
 
 for no in `seq -w 1000 1000 47000` ; do
-  url="https://nlftp.mlit.go.jp/isj/dls/data/12.0b/${no}-12.0b.zip"
+  url="https://nlftp.mlit.go.jp/isj/dls/data/${ISJ_VERSION}/${no}-${ISJ_VERSION}.zip"
   zip=${CACHE_DIR}/${no}.zip
   if [ ! -e "${zip}" ] ; then
     curl $url > ${zip}

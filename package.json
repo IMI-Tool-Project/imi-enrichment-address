@@ -5,16 +5,19 @@
   "main": "main.js",
   "scripts": {
     "test": "mocha",
-    "download": "bash tools/download.sh",
+    "clean": "rm -fR cache db",
+    "download-12.0b": "bash tools/download.sh 12.0b",
+    "download-13.0b": "bash tools/download.sh 13.0b",
     "format": "zcat cache/isj.txt.gz | node tools/format.js cache/sac_label.json cache/sac_parent.json cache/sac_change.json",
-    "tree": "zcat cache/isj.txt.gz  | node tools/tree.js cache/sac_label.json cache/sac_parent.json cache/sac_change.json > lib/tree.json",
+    "tree": "zcat cache/isj.txt.gz  | node tools/tree.js cache/sac_label.json cache/sac_parent.json cache/sac_change.json > cache/tree.json",
     "start": "node bin/server.js 8080"
   },
   "bin": "bin/cli.js",
   "files": [
     "bin",
     "lib",
-    "db"
+    "db",
+    "cache/tree.json"
   ],
   "keywords": [
     "imi"
