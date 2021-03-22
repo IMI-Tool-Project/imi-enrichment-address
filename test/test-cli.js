@@ -5,7 +5,7 @@ const spec = __dirname + "/../spec";
 
 function cli(options, stdin) {
   let res = "";
-  const cmd = ["bin/cli.js"].concat(options || []);
+  const cmd = ["node_modules/imi-enrichment-address/bin/cli.js"].concat(options || []);
   return new Promise(resolve => {
     const child = spawn("node", cmd);
     child.stdout.setEncoding('utf-8');
